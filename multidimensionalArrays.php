@@ -1,9 +1,9 @@
 <?php
 
 $cars = [
-        "Expensive" => ["Audi","Mercedes","BMW"],
-        "Cheap" => ["Ford","Volvo","Toyota"],
-    ];
+    "Expensive" => ["Audi", "Mercedes", "BMW"],
+    "Cheap" => ["Ford", "Volvo", "Toyota"],
+];
 
 echo $cars["Expensive"][2];
 echo "<br>";
