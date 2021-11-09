@@ -23,7 +23,7 @@
     <!-- enctype="multipart/form-data" specifies how form should be encoded -->
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="file" name="file" />
-        <button type="submit">Submit</button>
+        <button type="submit" name="submit">Submit</button>
     </form>
 </body>
 
