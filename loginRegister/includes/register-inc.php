@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
         $sql = "SELECT username FROM users WHERE username = ?";
         // Our Prepared STATEMENT which only needs to be called once so speeds stuff up
         // it also saves us from SQL injections
-        $stmt = mysqli_stmt_init($conneciton);
+        $stmt = mysqli_stmt_init($connection);
         // check if statement failed
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../register.php?error=sqlerror");
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
             } else {
                 // add user to database table users
                 $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-                $stmt = mysqli_stmt_init($conneciton);
+                $stmt = mysqli_stmt_init($connection);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../register.php?error=sqlerror");
                     exit();
