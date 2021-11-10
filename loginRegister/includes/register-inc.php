@@ -36,8 +36,7 @@ if (isset($_POST['submit'])) {
             header("Location: ../register.php?error=sqlerror");
             exit();
         } else {
-            // we could do "ss" if we were checking 2 strings like $username and $password
-            // "i" stands for Int and "b" stands for boolean
+            // "s" stands for string eg $username "i" stands for Int and "b" stands for boolean
             mysqli_stmt_bind_param($stmt, "s", $username);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
