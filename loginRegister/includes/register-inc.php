@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
     // $password = mysqli_real_escape_string($connection, htmlentities($_POST['password']));
     // $confirmPassword = mysqli_real_escape_string($connection, htmlentities($_POST['confirmPassword']));
 
+    // htmlentities protects us from JavaScript injections
     $username = htmlentities($_POST['username']);
     $password = htmlentities($_POST['password']);
     $confirmPass = htmlentities($_POST['confirmPassword']);
@@ -46,6 +47,19 @@ if (isset($_POST['submit'])) {
             if ($rowCount > 0) {
                 header("Location: ../register.php?error=usernametaken");
                 exit();
+            } else {
+                // add user to database table users
+                $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+                $stmt = mysqli_stmt_init($conneciton);
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../register.php?error=sqlerror");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+                    mysqli_stmt_execute($stmt);
+                    header("Location: ../register.php?succes=registered");
+                    exit();
+                }
             }
         }
     }
