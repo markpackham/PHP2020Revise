@@ -9,11 +9,11 @@ $result = mysqli_query($connection, $sql);
 $rowCount = mysqli_num_rows($result);
 
 if ($rowCount > 0) {
-    echo "<ul>";
+    echo "<ol>";
     while ($row = mysqli_fetch_array($result)) {
-        echo "<li>" . $row['username'] . "<br>" . "</li>";
+        echo "<li>" . $row['username'] . "</li>";
     }
-    echo "</ul>";
+    echo "</ol>";
 } else {
     echo "<p>No results found.</p>";
 }

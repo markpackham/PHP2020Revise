@@ -10,7 +10,7 @@ require_once 'includes/header.php';
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="confirmPassword" placeholder="Confirm password">
-        <button type="submit" name="submit">REGISTRER</button>
+        <button type="submit" name="submit">Submit</button>
     </form>
 </div>
 
