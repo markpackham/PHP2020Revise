@@ -29,6 +29,21 @@ if (isset($_POST['submit'])) {
             if ($row = mysqli_fetch_assoc($result)) {
                 // check if password entered in form matches hashed password in database
                 $passCheck = password_verify($password, $row['password']);
+                if ($passCheck == false) {
+                    header("Location: ../loginRegister.php?error=wrongpass");
+                    exit();
+                } elseif ($passCheck) {
+                    // login user via session
+                    // don't save a password in a session since that's sensative info
+                    session_start();
+                    $_SESSION['sessionId'] = $row['id'];
+                    $_SESSION['sessionUser'] = $row['username'];
+                    header("Location: ../loginRegister.php?success=loggedin");
+                    exit();
+                } else {
+                    header("Location: ../loginRegister.php?error=wrongpass");
+                    exit();
+                }
             } else {
                 header("Location: ../loginRegister.php?error=nouser");
                 exit();
