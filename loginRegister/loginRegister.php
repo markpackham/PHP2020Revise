@@ -20,9 +20,9 @@ if ($rowCount > 0) {
 
 
 if (isset($_SESSION['sessionId'])) {
-    echo "<p>You are logged in!</p>";
+    echo "<p>&nbsp; You are logged in!</p>";
 } else {
-    echo "<p>Home Page</p>";
+    echo "<p>&nbsp; Home Page</p>";
 }
 ?>
 

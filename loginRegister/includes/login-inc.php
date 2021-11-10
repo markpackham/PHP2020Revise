@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     } else {
         $sql = "SELECT * FROM users WHERE username = ?";
         // $connection comes from [require 'database.php']
-        $stmt = mysqli_stmt_init($connection, $sql);
+        $stmt = mysqli_stmt_init($connection);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../loginRegister.php?error=sqlerror");
             exit();
