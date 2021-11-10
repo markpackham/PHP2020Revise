@@ -55,7 +55,13 @@ if (isset($_POST['submit'])) {
                     header("Location: ../register.php?error=sqlerror");
                     exit();
                 } else {
-                    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+                    // hash our password, https://www.php.net/manual/en/function.password-hash.php
+                    // PASSWORD_DEFAULT - Use the bcrypt algorithm (default as of PHP 5.5.0). 
+                    // Note that this constant is designed to change over time as new and stronger 
+                    // algorithms are added to PHP. Make sure database column can handle large strings
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                    mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPassword);
                     mysqli_stmt_execute($stmt);
                     header("Location: ../register.php?succes=registered");
                     exit();
@@ -63,4 +69,9 @@ if (isset($_POST['submit'])) {
             }
         }
     }
+
+    // to save resources close statement
+    mysqli_stmt_close($stmt);
+    // close database connection
+    mysqli_close($conneciton);
 }
